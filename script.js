@@ -40,6 +40,8 @@ clock();
 
 let audioObject = new Audio("./audio/alarm-tone.mp3"); //Audio file for Alarm
 let timeoutId;
+let alarmCount = 0;
+let alarms = {}; // Object to store alarm information (time, timeout)
 
 // Set the alarm based on user input and displaying on the list using DOM
 function setAlarm() {
@@ -95,14 +97,16 @@ function setAlarm() {
   stopAlarmBtn.textContent = "Stop";
   deleteAlarmBtn.textContent = "Delete";
 
+  const alarmId = ++alarmCount;
+
   // Stop The Alarm
   const alarmStop = () => {
-    stopAlarm();
+    stopAlarm(alarmId);
   };
 
   // Delete The Alarm
   const alarmDelete = () => {
-    alarmStop();
+    alarmStop(alarmId);
     console.log("alarm Deleted");
     listItem.remove();
   };
@@ -126,6 +130,13 @@ function setAlarm() {
   console.log(`currentTime:${currentTime}`);
   console.log(`alarmTime:${alarmTime}`);
   console.log(`timeDifference:${timeDifference}`);
+
+  const alarmInfo = {
+    time: alarmTime,
+    timeout: setTimeout(() => playAlarm(alarmId), timeDifference),
+  };
+
+  alarms[alarmId] = alarmInfo;
 
   if (timeDifference <= 0) {
     alert("Please Enter The Future Time for Alarm");
@@ -151,20 +162,29 @@ function setAlarm() {
 }
 
 // Play the alarm sound
-function playAlarm() {
-  audioObject.loop = true;
-  audioObject.play();
+function playAlarm(alarmId) {
+  const alarmInfo = alarms[alarmId];
 
-  const audioDuration = 1000; //for 1second
+  if (alarmInfo) {
+    audioObject.loop = true;
+    audioObject.play();
+    const audioDuration = 1000; //for 1second
 
-  setTimeout(() => {
-    console.log("Alarm is Ringing");
-    alert(`The Alarm is Ringing`);
-  }, audioDuration);
+    setTimeout(() => {
+      console.log("Alarm is Ringing");
+      alert(`The Alarm is Ringing`);
+    }, audioDuration);
+  }
 }
 
 // Stop the alarm sound
-function stopAlarm() {
+function stopAlarm(alarmId) {
   audioObject.pause();
   audioObject.currentTime = 0;
+
+  const alarmInfo = alarms[alarmId];
+  if (alarmInfo) {
+    clearTimeout(alarmInfo.timeout);
+    delete alarms[alarmId];
+  }
 }
