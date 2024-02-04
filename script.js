@@ -137,13 +137,14 @@ function setAlarm() {
       if(timeDifference>0){
         playAlarm(alarmId);
       }else{
-        alert("Please Enter The Future Time for Alarm");
-    listItem.remove();
-      }
-    }, timeDifference),
+        alert('Please Enter Future time for Alarm');
+      listItem.remove();
+    }
+  },timeDifference),
   };
 
   alarms[alarmId] = alarmInfo;
+
 
   // Checks for the past time
   if (timeoutId) {
