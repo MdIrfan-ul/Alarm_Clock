@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="The Digital Alarm Clock For Setting Alarm for 12 hours format." />
+    <meta name="keywords" content="alarm, clock, web app, digital clock" />
+    <meta name="author" content="Mohamed Irfanullah M" />
+    <title>Alarm App</title>
+    <link rel="icon" href="./icon/alarm.png" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <!-- main container -->
+    <h3>Alarm Clock ⏰</h3>
+    <div class="main-container">
+        <div class="container">
+
+            
+            <!-- Clock Face -->
+            <div id="cur-time" class="current-time">
+                <span id="hour"></span>
+                <span id="minute"></span>
+                <span id="seconds"></span>
+                <span id="period">AM</span>
+            </div>
+            <hr id="section-1" />
+
+
+            <!-- Set Alarm -->
+            <div id="setAlarms" class="set-alarm">
+                <input type="number" id="hours" class="time-box" min="01" max="23" placeholder="Hr"
+                    required /><span>:</span>
+                <input type="number" id="minutes" class="time-box" min="0" max="59" placeholder="Min"
+                    required /><span>:</span>
+                <input type="number" id="second" class="time-box" min="0" max="59" placeholder="Sec" required />
+                <select class="period-box" id="period-options">
+                    <option>AM</option>
+                    <option>PM</option>
+                </select>
+                <button type="submit" id="alarmSet" onclick="setAlarm()" class="alarm-button">
+                    Set Alarm
+                </button>
+            </div>
+            <hr id="section-2" />
+
+
+            <!-- Display Alarm -->
+            <div class="show-alarm">
+                <h4>Digital Alarm ⏱️</h4>
+                <!-- Alarm List  -->
+                <ul id="alarm-list"></ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
