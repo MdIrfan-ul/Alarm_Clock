@@ -42,6 +42,9 @@ Welcome to the  Alarm Clock project! This is a simple web-based alarm clock appl
 
 - When the set time is reached, the alarm will sound.
 
+## Hosting
+- This Project is Hosted on [![Netlify Status](https://api.netlify.com/api/v1/badges/e159c9b0-5450-4a9a-a15f-f631bdb53a6f/deploy-status)](https://app.netlify.com/sites/alarmclock-md-irfan/deploys)
+- The Website Link is [Link](https://alarmclock-md-irfan.netlify.app/)
 
 ## Project Structure
 
